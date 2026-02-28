@@ -1,0 +1,10 @@
+{
+  "iconDefinitions": {
+    "circom": {
+      "iconPath": "../icons/circom.svg"
+    }
+  },
+  "languageIds": {
+    "circom": "circom"
+  }
+}

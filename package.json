@@ -62,6 +62,13 @@
         "language": "circom",
         "path": "./snippets/circom.json"
       }
+    ],
+    "iconThemes": [
+      {
+        "id": "circom-icons",
+        "label": "Circom File Icons",
+        "path": "./fileicons/circom-icon-theme.json"
+      }
     ]
   }
 }

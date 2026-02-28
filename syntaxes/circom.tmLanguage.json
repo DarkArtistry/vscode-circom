@@ -166,23 +166,23 @@
     "constraint-operators": {
       "patterns": [
         {
-          "name": "keyword.operator.constraint.signal-assign-constrain.circom",
+          "name": "keyword.control.constraint.signal-assign-constrain.circom",
           "match": "<=="
         },
         {
-          "name": "keyword.operator.constraint.signal-assign-constrain.circom",
+          "name": "keyword.control.constraint.signal-assign-constrain.circom",
           "match": "==>"
         },
         {
-          "name": "keyword.operator.constraint.signal-assign.circom",
+          "name": "keyword.control.constraint.signal-assign.circom",
           "match": "<--"
         },
         {
-          "name": "keyword.operator.constraint.signal-assign.circom",
+          "name": "keyword.control.constraint.signal-assign.circom",
           "match": "-->"
         },
         {
-          "name": "keyword.operator.constraint.equality.circom",
+          "name": "keyword.control.constraint.equality.circom",
           "match": "==="
         }
       ]
