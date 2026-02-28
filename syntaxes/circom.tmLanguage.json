@@ -1,0 +1,329 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Circom",
+  "scopeName": "source.circom",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#pragma" },
+    { "include": "#include" },
+    { "include": "#template-definition" },
+    { "include": "#function-definition" },
+    { "include": "#component-main" },
+    { "include": "#signal-declaration" },
+    { "include": "#storage-types" },
+    { "include": "#storage-modifiers" },
+    { "include": "#control-flow" },
+    { "include": "#builtins" },
+    { "include": "#constraint-operators" },
+    { "include": "#compound-assignment-operators" },
+    { "include": "#standard-operators" },
+    { "include": "#numbers" },
+    { "include": "#strings" },
+    { "include": "#function-call" },
+    { "include": "#punctuation" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.circom",
+          "match": "//.*$"
+        },
+        {
+          "name": "comment.block.circom",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+    "pragma": {
+      "patterns": [
+        {
+          "name": "meta.pragma.circom",
+          "match": "\\b(pragma)\\s+(circom)\\s+([0-9]+\\.[0-9]+\\.[0-9]+)\\s*;",
+          "captures": {
+            "1": { "name": "keyword.control.directive.circom" },
+            "2": { "name": "keyword.control.directive.circom" },
+            "3": { "name": "constant.numeric.version.circom" }
+          }
+        },
+        {
+          "name": "meta.pragma.custom-templates.circom",
+          "match": "\\b(pragma)\\s+(custom_templates)\\s*;",
+          "captures": {
+            "1": { "name": "keyword.control.directive.circom" },
+            "2": { "name": "keyword.control.directive.circom" }
+          }
+        }
+      ]
+    },
+    "include": {
+      "name": "meta.include.circom",
+      "match": "\\b(include)\\s+(\"[^\"]*\")\\s*;",
+      "captures": {
+        "1": { "name": "keyword.control.directive.circom" },
+        "2": { "name": "string.quoted.double.circom" }
+      }
+    },
+    "template-definition": {
+      "patterns": [
+        {
+          "name": "meta.template.circom",
+          "match": "\\b(template)\\s+(parallel\\s+|custom\\s+)?(\\w+)\\s*\\(",
+          "captures": {
+            "1": { "name": "keyword.declaration.circom" },
+            "2": { "name": "storage.modifier.circom" },
+            "3": { "name": "entity.name.type.template.circom" }
+          }
+        }
+      ]
+    },
+    "function-definition": {
+      "name": "meta.function.circom",
+      "match": "\\b(function)\\s+(\\w+)\\s*\\(",
+      "captures": {
+        "1": { "name": "keyword.declaration.circom" },
+        "2": { "name": "entity.name.function.circom" }
+      }
+    },
+    "component-main": {
+      "patterns": [
+        {
+          "name": "meta.component-main.circom",
+          "match": "\\b(component)\\s+(main)\\s*(\\{[^}]*\\})?\\s*=",
+          "captures": {
+            "1": { "name": "keyword.declaration.main.circom" },
+            "2": { "name": "keyword.declaration.main.circom" },
+            "3": {
+              "patterns": [
+                {
+                  "name": "meta.public-signals.circom",
+                  "begin": "\\{",
+                  "end": "\\}",
+                  "beginCaptures": { "0": { "name": "punctuation.definition.block.circom" } },
+                  "endCaptures": { "0": { "name": "punctuation.definition.block.circom" } },
+                  "patterns": [
+                    {
+                      "name": "storage.modifier.circom",
+                      "match": "\\b(public)\\b"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "signal-declaration": {
+      "patterns": [
+        {
+          "name": "meta.signal.tagged.circom",
+          "match": "\\b(signal)\\s+(input|output)\\s+(\\{[^}]*\\})",
+          "captures": {
+            "1": { "name": "storage.type.circom" },
+            "2": { "name": "storage.modifier.circom" },
+            "3": {
+              "patterns": [
+                {
+                  "name": "entity.other.attribute-name.circom",
+                  "match": "\\w+"
+                },
+                {
+                  "name": "punctuation.definition.tag.circom",
+                  "match": "[{},]"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "meta.signal.circom",
+          "match": "\\b(signal)\\s+(input|output)\\b",
+          "captures": {
+            "1": { "name": "storage.type.circom" },
+            "2": { "name": "storage.modifier.circom" }
+          }
+        }
+      ]
+    },
+    "storage-types": {
+      "match": "\\b(signal|var|component|bus)\\b",
+      "name": "storage.type.circom"
+    },
+    "storage-modifiers": {
+      "match": "\\b(input|output|public|parallel|custom)\\b",
+      "name": "storage.modifier.circom"
+    },
+    "control-flow": {
+      "match": "\\b(if|else|for|while|do|return)\\b",
+      "name": "keyword.control.flow.circom"
+    },
+    "builtins": {
+      "match": "\\b(log|assert)\\b",
+      "name": "keyword.other.circom"
+    },
+    "constraint-operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.constraint.signal-assign-constrain.circom",
+          "match": "<=="
+        },
+        {
+          "name": "keyword.operator.constraint.signal-assign-constrain.circom",
+          "match": "==>"
+        },
+        {
+          "name": "keyword.operator.constraint.signal-assign.circom",
+          "match": "<--"
+        },
+        {
+          "name": "keyword.operator.constraint.signal-assign.circom",
+          "match": "-->"
+        },
+        {
+          "name": "keyword.operator.constraint.equality.circom",
+          "match": "==="
+        }
+      ]
+    },
+    "compound-assignment-operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.assignment.compound.circom",
+          "match": "\\+="
+        },
+        {
+          "name": "keyword.operator.assignment.compound.circom",
+          "match": "-="
+        },
+        {
+          "name": "keyword.operator.assignment.compound.circom",
+          "match": "\\*="
+        },
+        {
+          "name": "keyword.operator.assignment.compound.circom",
+          "match": "/="
+        },
+        {
+          "name": "keyword.operator.assignment.compound.circom",
+          "match": "\\\\="
+        },
+        {
+          "name": "keyword.operator.assignment.compound.circom",
+          "match": "%="
+        },
+        {
+          "name": "keyword.operator.assignment.compound.circom",
+          "match": "\\*\\*="
+        },
+        {
+          "name": "keyword.operator.assignment.compound.circom",
+          "match": "<<="
+        },
+        {
+          "name": "keyword.operator.assignment.compound.circom",
+          "match": ">>="
+        },
+        {
+          "name": "keyword.operator.assignment.compound.circom",
+          "match": "&="
+        },
+        {
+          "name": "keyword.operator.assignment.compound.circom",
+          "match": "\\|="
+        },
+        {
+          "name": "keyword.operator.assignment.compound.circom",
+          "match": "\\^="
+        }
+      ]
+    },
+    "standard-operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.comparison.circom",
+          "match": "==|!=|<=|>=|<|>"
+        },
+        {
+          "name": "keyword.operator.logical.circom",
+          "match": "&&|\\|\\||!"
+        },
+        {
+          "name": "keyword.operator.arithmetic.circom",
+          "match": "\\*\\*|\\+|-|\\*|/|\\\\|%"
+        },
+        {
+          "name": "keyword.operator.bitwise.circom",
+          "match": "<<|>>|&|\\||\\^|~"
+        },
+        {
+          "name": "keyword.operator.ternary.circom",
+          "match": "\\?"
+        },
+        {
+          "name": "keyword.operator.assignment.circom",
+          "match": "="
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.hex.circom",
+          "match": "\\b0[xX][0-9a-fA-F]+\\b"
+        },
+        {
+          "name": "constant.numeric.decimal.circom",
+          "match": "\\b[0-9]+\\b"
+        }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted.double.circom",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.circom",
+          "match": "\\\\."
+        }
+      ]
+    },
+    "function-call": {
+      "name": "meta.function-call.circom",
+      "match": "\\b([A-Z]\\w*)\\s*\\(",
+      "captures": {
+        "1": { "name": "entity.name.type.template.circom" }
+      }
+    },
+    "punctuation": {
+      "patterns": [
+        {
+          "name": "punctuation.terminator.statement.circom",
+          "match": ";"
+        },
+        {
+          "name": "punctuation.separator.comma.circom",
+          "match": ","
+        },
+        {
+          "name": "punctuation.definition.block.circom",
+          "match": "[{}]"
+        },
+        {
+          "name": "punctuation.definition.brackets.circom",
+          "match": "[\\[\\]]"
+        },
+        {
+          "name": "punctuation.definition.parens.circom",
+          "match": "[()]"
+        },
+        {
+          "name": "punctuation.accessor.dot.circom",
+          "match": "\\."
+        }
+      ]
+    }
+  }
+}

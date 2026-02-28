@@ -1,0 +1,67 @@
+{
+  "name": "circom-lang",
+  "displayName": "Circom Language Support",
+  "description": "Syntax highlighting, snippets, and language support for Circom 2.x zero-knowledge circuit language",
+  "version": "0.1.0",
+  "publisher": "darkartistry",
+  "author": {
+    "name": "darkartistry"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/darkartistry/vscode-circom"
+  },
+  "bugs": {
+    "url": "https://github.com/darkartistry/vscode-circom/issues"
+  },
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "keywords": [
+    "circom",
+    "zero-knowledge",
+    "zk-snark",
+    "circuit",
+    "groth16",
+    "plonk",
+    "snarkjs"
+  ],
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#1e1e2e",
+    "theme": "dark"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "circom",
+        "aliases": [
+          "Circom",
+          "circom"
+        ],
+        "extensions": [
+          ".circom"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "circom",
+        "scopeName": "source.circom",
+        "path": "./syntaxes/circom.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "circom",
+        "path": "./snippets/circom.json"
+      }
+    ]
+  }
+}

@@ -1,0 +1,254 @@
+{
+  "Pragma": {
+    "prefix": "pragma",
+    "body": [
+      "pragma circom ${1:2.1.0};"
+    ],
+    "description": "Pragma version declaration"
+  },
+  "Include": {
+    "prefix": "include",
+    "body": [
+      "include \"${1:circomlib/circuits/}${2:comparators}.circom\";"
+    ],
+    "description": "Include external circom file"
+  },
+  "Circom File": {
+    "prefix": "circomfile",
+    "body": [
+      "pragma circom ${1:2.1.0};",
+      "",
+      "include \"${2:circomlib/circuits/comparators}.circom\";",
+      "",
+      "template ${3:MyCircuit}(${4}) {",
+      "    signal input ${5:in};",
+      "    signal output ${6:out};",
+      "",
+      "    $0",
+      "}",
+      "",
+      "component main = ${3:MyCircuit}(${7});"
+    ],
+    "description": "Full circom file boilerplate"
+  },
+  "Template": {
+    "prefix": "template",
+    "body": [
+      "template ${1:Name}(${2}) {",
+      "    signal input ${3:in};",
+      "    signal output ${4:out};",
+      "",
+      "    $0",
+      "}"
+    ],
+    "description": "Template declaration"
+  },
+  "Template with Main": {
+    "prefix": "templatemain",
+    "body": [
+      "template ${1:Name}(${2}) {",
+      "    signal input ${3:in};",
+      "    signal output ${4:out};",
+      "",
+      "    $0",
+      "}",
+      "",
+      "component main = ${1:Name}(${5});"
+    ],
+    "description": "Template with component main declaration"
+  },
+  "Parallel Template": {
+    "prefix": "templateparallel",
+    "body": [
+      "template parallel ${1:Name}(${2}) {",
+      "    signal input ${3:in};",
+      "    signal output ${4:out};",
+      "",
+      "    $0",
+      "}"
+    ],
+    "description": "Parallel template declaration"
+  },
+  "Function": {
+    "prefix": "function",
+    "body": [
+      "function ${1:name}(${2}) {",
+      "    ${3:var result = 0;}",
+      "    $0",
+      "    return ${4:result};",
+      "}"
+    ],
+    "description": "Function declaration"
+  },
+  "Signal Input": {
+    "prefix": "signalinput",
+    "body": [
+      "signal input ${1:name}${2:[${3:n}]};"
+    ],
+    "description": "Input signal declaration"
+  },
+  "Signal Output": {
+    "prefix": "signaloutput",
+    "body": [
+      "signal output ${1:name}${2:[${3:n}]};"
+    ],
+    "description": "Output signal declaration"
+  },
+  "Signal Intermediate": {
+    "prefix": "signal",
+    "body": [
+      "signal ${1:name}${2:[${3:n}]};"
+    ],
+    "description": "Intermediate signal declaration"
+  },
+  "Signal Input with Tag": {
+    "prefix": "signalinputtag",
+    "body": [
+      "signal input {${1:binary}} ${2:name}${3:[${4:n}]};"
+    ],
+    "description": "Input signal with tag annotation"
+  },
+  "Component": {
+    "prefix": "component",
+    "body": [
+      "component ${1:name} = ${2:Template}(${3});"
+    ],
+    "description": "Component instantiation"
+  },
+  "Component Main": {
+    "prefix": "componentmain",
+    "body": [
+      "component main = ${1:Template}(${2});"
+    ],
+    "description": "Main component declaration"
+  },
+  "Component Main with Public": {
+    "prefix": "componentmainpublic",
+    "body": [
+      "component main {public [${1:signal}]} = ${2:Template}(${3});"
+    ],
+    "description": "Main component with public signals"
+  },
+  "Signal Constrain Assign Left": {
+    "prefix": "sca",
+    "body": [
+      "${1:out} <== ${2:expression};"
+    ],
+    "description": "Signal constrain-assign (left) <=="
+  },
+  "Signal Constrain Assign Right": {
+    "prefix": "scr",
+    "body": [
+      "${1:expression} ==> ${2:out};"
+    ],
+    "description": "Signal constrain-assign (right) ==>"
+  },
+  "Signal Assign Left": {
+    "prefix": "sal",
+    "body": [
+      "${1:out} <-- ${2:expression};"
+    ],
+    "description": "Signal assign (left, no constraint) <--"
+  },
+  "Equality Constraint": {
+    "prefix": "eqc",
+    "body": [
+      "${1:a} === ${2:b};"
+    ],
+    "description": "Equality constraint ==="
+  },
+  "For Loop": {
+    "prefix": "for",
+    "body": [
+      "for (var ${1:i} = 0; ${1:i} < ${2:n}; ${1:i}++) {",
+      "    $0",
+      "}"
+    ],
+    "description": "For loop"
+  },
+  "While Loop": {
+    "prefix": "while",
+    "body": [
+      "while (${1:condition}) {",
+      "    $0",
+      "}"
+    ],
+    "description": "While loop"
+  },
+  "If Statement": {
+    "prefix": "if",
+    "body": [
+      "if (${1:condition}) {",
+      "    $0",
+      "}"
+    ],
+    "description": "If statement"
+  },
+  "If-Else Statement": {
+    "prefix": "ifelse",
+    "body": [
+      "if (${1:condition}) {",
+      "    $2",
+      "} else {",
+      "    $0",
+      "}"
+    ],
+    "description": "If-else statement"
+  },
+  "Log": {
+    "prefix": "log",
+    "body": [
+      "log(${1:expression});"
+    ],
+    "description": "Log output for debugging"
+  },
+  "Assert": {
+    "prefix": "assert",
+    "body": [
+      "assert(${1:expression});"
+    ],
+    "description": "Assert statement"
+  },
+  "Variable Array": {
+    "prefix": "vararray",
+    "body": [
+      "var ${1:name}[${2:n}];"
+    ],
+    "description": "Variable array declaration"
+  },
+  "Variable 2D Array": {
+    "prefix": "var2d",
+    "body": [
+      "var ${1:name}[${2:rows}][${3:cols}];"
+    ],
+    "description": "Variable 2D array declaration"
+  },
+  "Anonymous Component": {
+    "prefix": "anon",
+    "body": [
+      "(${1:out1}, ${2:out2}) <== ${3:Template}(${4})(${5:in1}, ${6:in2});"
+    ],
+    "description": "Anonymous component instantiation (Circom 2.1+)"
+  },
+  "Tuple Assignment": {
+    "prefix": "tuple",
+    "body": [
+      "var (${1:a}, ${2:b}) = ${3:func}(${4});"
+    ],
+    "description": "Tuple destructuring assignment"
+  },
+  "IsZero Gadget": {
+    "prefix": "iszero",
+    "body": [
+      "// IsZero: out = (in == 0) ? 1 : 0",
+      "signal input ${1:in};",
+      "signal output ${2:out};",
+      "signal inv;",
+      "",
+      "inv <-- ${1:in} != 0 ? 1 / ${1:in} : 0;",
+      "${2:out} <== -${1:in} * inv + 1;",
+      "${1:in} * ${2:out} === 0;"
+    ],
+    "description": "Inline IsZero gadget pattern"
+  }
+}
