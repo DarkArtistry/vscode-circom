@@ -2,7 +2,7 @@
   "name": "circom-lang",
   "displayName": "Circom Language Support",
   "description": "Syntax highlighting, snippets, and language support for Circom 2.x zero-knowledge circuit language",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publisher": "darkartistry",
   "author": {
     "name": "darkartistry"
@@ -15,6 +15,10 @@
   "bugs": {
     "url": "https://github.com/darkartistry/vscode-circom/issues"
   },
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onLanguage:circom"
+  ],
   "engines": {
     "vscode": "^1.70.0"
   },
@@ -69,6 +73,28 @@
         "label": "Circom File Icons",
         "path": "./fileicons/circom-icon-theme.json"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Circom",
+      "properties": {
+        "circom.includePaths": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [],
+          "description": "Additional paths to search for Circom include files"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node esbuild.mjs",
+    "build:min": "node esbuild.mjs --minify",
+    "watch": "node esbuild.mjs --watch"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.70.0",
+    "@types/node": "^20.0.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.5.0"
   }
 }

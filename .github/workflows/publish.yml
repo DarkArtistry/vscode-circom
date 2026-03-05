@@ -15,6 +15,12 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build extension
+        run: npm run build:min
+
       - name: Install vsce and ovsx
         run: npm install -g @vscode/vsce ovsx
 
