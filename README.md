@@ -56,6 +56,13 @@ Full TextMate grammar for Circom 2.x including:
 | `tuple` | Tuple destructuring assignment |
 | `iszero` | Inline IsZero gadget pattern |
 
+### Go-to-Definition
+
+- **Ctrl+Click on `include` paths** to open the imported file
+- **Ctrl+Click on template/function names** (e.g., `Poseidon`) to jump to the definition, even across included files
+- Resolves paths relative to the file, then `node_modules/`, then user-configured `circom.includePaths`
+- Clickable links on include paths for quick navigation
+
 ### Language Configuration
 
 - Toggle line comments with `Cmd+/` / `Ctrl+/`
@@ -88,9 +95,9 @@ code --install-extension darkartistry.circom-lang
 Download the `.vsix` from [Releases](https://github.com/darkartistry/vscode-circom/releases), then:
 
 ```bash
-codium --install-extension circom-lang-0.1.0.vsix
+codium --install-extension circom-lang-0.2.0.vsix
 # or
-code --install-extension circom-lang-0.1.0.vsix
+code --install-extension circom-lang-0.2.0.vsix
 ```
 
 ## Supported Circom Versions
@@ -100,8 +107,8 @@ code --install-extension circom-lang-0.1.0.vsix
 
 ## Roadmap
 
-- **v0.2**: Diagnostics - red/yellow squiggly lines from `circom --inspect`
-- **v1.0**: LSP integration - hover docs, go-to-definition, auto-completion
+- **v0.3**: Diagnostics - red/yellow squiggly lines from `circom --inspect`
+- **v1.0**: LSP integration - hover docs, auto-completion
 
 ## Contributing
 
