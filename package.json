@@ -2,7 +2,7 @@
   "name": "circom-lang",
   "displayName": "Circom Language Support",
   "description": "Syntax highlighting, snippets, and language support for Circom 2.x zero-knowledge circuit language",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "publisher": "darkartistry",
   "author": {
     "name": "darkartistry"
