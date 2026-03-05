@@ -28,13 +28,12 @@ jobs:
         run: vsce package
 
       - name: Publish to VS Code Marketplace
-        if: secrets.VSCE_PAT != ''
+        continue-on-error: true
         run: vsce publish
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
 
       - name: Publish to Open VSX
-        if: secrets.OVSX_PAT != ''
         run: ovsx publish *.vsix
         env:
           OVSX_PAT: ${{ secrets.OVSX_PAT }}
